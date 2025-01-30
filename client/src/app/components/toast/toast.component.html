@@ -1,0 +1,3 @@
+<div *ngIf="toastService.isVisible" [ngClass]="{'toast-success': toastService.type === 'success', 'toast-error': toastService.type === 'error'}" class="toast">
+  {{ toastService.message }}
+</div>

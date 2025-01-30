@@ -1,0 +1,100 @@
+<nav class="navbar">
+  <div class="logo">
+    <img src="assets/tractor.png" alt="Tractor Logo" class="logo-icon" (click)="navigateTo()"/>
+    <a (click)="navigateTo()">AgroUtilaj Service</a>
+  </div>
+  <div class="hamburger-menu" [class.active]="menuActive" (click)="toggleMenu()">
+    <mat-icon>{{ menuActive ? 'close' : 'menu' }}</mat-icon>
+  </div>
+  <div class="nav-links" [class.active]="menuActive">
+    <a (click)="navigateTo()">Acasa</a>
+  </div>
+</nav>
+<div class="home-container" *ngIf="!productLoading">
+
+  <section class="product-details">
+    <!-- Left Side: Gallery -->
+    <div class="gallery-container">
+      <div class="gallery">
+        <img [src]="selectedImage" alt="Product Image" class="main-image"  (click)="openImageDialog(selectedImage)">
+      </div>
+      <div class="thumbnail-container">
+        <img *ngFor="let image of product?.images!"
+             [src]="image.file"
+             alt="Thumbnail"
+             class="thumbnail"
+             (click)="selectImage(image.file)">
+      </div>
+    </div>
+
+    <!-- Right Side: Product Info -->
+    <div class="product-info">
+      <h3>Data adăugării: {{ formatDate(product?.createdAt!) }}</h3>
+
+      <div class="price-list">
+        <h4>Prețuri disponibile:</h4>
+        <ul>
+          <li *ngFor="let price of product?.price">
+            {{ price.amount | currency:price.currency }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Call Button -->
+      <button class="call-button" (click)="makeCall()">
+        <mat-icon>call</mat-icon> Sună acum
+      </button>
+    </div>
+  </section>
+
+  <section class="product-info-section">
+    <!-- Details -->
+    <div class="details-container">
+      <h3>Detalii</h3>
+
+      <div class="details-table">
+        <div class="details-row">
+          <span class="label">Cod Unic:</span>
+          <span class="value">{{ product?.unique_id }}</span>
+        </div>
+        <div class="details-row">
+          <span class="label">Nume:</span>
+          <span class="value">{{ product?.name }}</span>
+        </div>
+        <div class="details-row">
+          <span class="label">Marcă:</span>
+          <span class="value">{{ product?.make }}</span>
+        </div>
+        <div class="details-row">
+          <span class="label">Model:</span>
+          <span class="value">{{ product?.productModel }}</span>
+        </div>
+        <div class="details-row">
+          <span class="label">Categorie:</span>
+          <span class="value">{{ product?.category }}</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="description-container">
+      <h3>Descriere</h3>
+      <div class="description-content" [innerHTML]="product?.description"></div>
+    </div>
+
+    <!-- Action Buttons (Call & Share) -->
+    <div class="action-buttons">
+      <button class="icon-button call-button" (click)="makeCall()" title="Sună acum">
+        <mat-icon>call</mat-icon>
+      </button>
+      <button class="icon-button share-button" (click)="shareOnFacebook()" title="Distribuie">
+        <mat-icon>share</mat-icon>
+      </button>
+    </div>
+  </section>
+
+
+
+</div>
+<mat-spinner diameter="30" *ngIf="productLoading"></mat-spinner>

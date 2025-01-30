@@ -1,0 +1,39 @@
+
+mat-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-error {
+  color: #f44336; /* Material "warn" color */
+  font-size: 0.75rem;
+  font-weight: 400;
+  margin: 0.25rem 0;
+}
+input[type="date"] {
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+mat-hint {
+  color: rgba(0, 0, 0, 0.6); /* Neutral gray for helper text */
+  font-size: 0.75rem;
+  margin: 0.25rem 0;
+}
+
+button[mat-icon-button] {
+  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+}
+
+mat-icon {
+  font-size: 20px;
+}
+
+
+
+
+
+

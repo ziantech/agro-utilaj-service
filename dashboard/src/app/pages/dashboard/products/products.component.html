@@ -1,0 +1,34 @@
+<div class="home-container" *ngIf="!isPageLoading && !hasError; else loadingOrError">
+  <!-- Search Section -->
+  <section class="search-section">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Cautare</mat-label>
+      <input matInput placeholder="Cauta dupa nume, id unic, categorie, marca, model, pret" (input)="onSearch($event)">
+    </mat-form-field>
+  </section>
+
+  <!-- Facilities Section -->
+  <section class="facilities-section">
+    <div class="facility-card" *ngFor="let product of filteredProducts">
+      <div class="facility-details">
+        <h2>{{ product.name }}</h2>
+        <h3>ID Unic: {{ product.unique_id }}</h3>
+        <p>{{ product.category }}</p>
+        <p>{{ product.make }}, {{ product.productModel }}</p>
+
+        <a class="facility-website" (click)="navigateTo(product._id)">Vezi Produsul</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<ng-template #loadingOrError>
+  <div class="loading-container" *ngIf="isPageLoading">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Se incarca produsele...</p>
+  </div>
+  <div class="error-container" *ngIf="hasError">
+    <p>Produsele nu a putut fi incarcate.</p>
+    <button mat-button color="warn" (click)="loadPageData()">Reincearca</button>
+  </div>
+</ng-template>

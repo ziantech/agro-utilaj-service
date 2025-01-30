@@ -1,0 +1,369 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    .logo-icon {
+      width: 75px;
+      height: 75px;
+    }
+
+    a {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        color: #4CAF50;
+      }
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    a {
+      font-size: 1rem;
+      text-decoration: none;
+      color: #333;
+      cursor: pointer;
+
+      &:hover {
+        color: #4CAF50;
+      }
+    }
+
+    .browse-button {
+      font-size: 1rem;
+      padding: 0.5rem 1.5rem;
+      background: #FFEB3B ;
+      color: #333;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      &:hover {
+        background-color: #4CAF50 ;
+        color: #fff;
+      }
+    }
+
+
+  }
+  .hamburger-menu {
+    display: none;
+    font-size: 2rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    color: #4CAF50;
+    transition: transform 0.3s ease-in-out;
+  }
+  .hamburger-menu.active {
+    transform: rotate(90deg);
+  }
+}
+/* Home Container */
+.home-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+/* Product Details Section */
+.product-details {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Gallery Container */
+.gallery-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery .main-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.thumbnail-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s ease-in-out;
+}
+
+.thumbnail:hover, .thumbnail:focus {
+  border: 2px solid #4CAF50;
+}
+
+/* Product Info */
+.product-info {
+  flex: 1;
+  padding: 1rem;
+  text-align: left;
+}
+
+.product-info h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-bottom: 1rem;
+}
+
+.price-list h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.price-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.price-list li {
+  font-size: 1rem;
+  margin: 0.3rem 0;
+  color: #333;
+}
+
+/* Call Button */
+.call-button {
+  width: 100%;
+  padding: 0.8rem;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.call-button:hover {
+  background: #388E3C;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-details {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery .main-image {
+    max-height: 300px;
+  }
+
+  .product-info {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+    }
+    .hamburger-menu {
+      display: block;
+    }
+    .nav-links {
+      display: none;
+      margin-top: 1rem;
+      gap: 1rem;
+      flex-direction: column;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      .browse-button {
+        width: 100%;
+      }
+    }
+    .nav-links.active {
+      display: flex;
+
+    }
+  }
+}
+
+
+/* Product Info Section */
+.product-info-section {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* Details Container */
+.details-container {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.details-container h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Details Table Style */
+.details-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.details-row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: bold;
+  color: #333;
+}
+
+.value {
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+/* Description Container */
+.description-container {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-top: 1.5rem;
+}
+
+.description-container h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.description-content {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 0.8rem;
+
+}
+
+/* Icon Buttons */
+.icon-button {
+  width: 45px;
+  height: 45px;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.call-button {
+  background: #4CAF50;
+  color: white;
+}
+
+.call-button:hover {
+  background: #388E3C;
+}
+
+.share-button {
+  background: #1877F2;
+  color: white;
+}
+
+.share-button:hover {
+  background: #125AB6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-info-section {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .details-row {
+    flex-direction: column;
+    text-align: left;
+    padding: 10px 0;
+  }
+
+  .action-buttons {
+    gap: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+}

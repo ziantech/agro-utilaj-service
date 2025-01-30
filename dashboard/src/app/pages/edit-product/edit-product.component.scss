@@ -1,0 +1,122 @@
+.add-product-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #333;
+  display: block;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+#price {
+  width: 200px;
+  margin-bottom: 2rem;
+}
+
+#add {
+  justify-self: flex-end;
+  align-self: flex-end;
+  margin-top: 2rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.price-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image-section {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+
+  .image-preview-container {
+    display: flex; /* Arrange images horizontally */
+    gap: 1rem; /* Add space between images */
+    overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+    padding-bottom: 0.5rem; /* Add space for better visibility of scroll */
+    scrollbar-width: thin; /* For Firefox, thin scrollbar */
+    scrollbar-color: #ccc transparent; /* Custom scrollbar colors */
+  }
+
+  .image-preview img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* For Webkit browsers (Chrome, Safari) */
+  .image-preview-container::-webkit-scrollbar {
+    height: 8px; /* Scrollbar height */
+  }
+
+  .image-preview-container::-webkit-scrollbar-thumb {
+    background: #ccc; /* Scrollbar thumb color */
+    border-radius: 4px; /* Rounded scrollbar thumb */
+  }
+
+  .image-preview-container::-webkit-scrollbar-track {
+    background: transparent; /* Scrollbar track color */
+  }
+}
+
+
+.rich-text-editor {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  display: flex; /* Ensure it stretches properly */
+  flex-direction: column;
+
+  /* Adjust the Quill container */
+  .ql-container {
+    flex: 1; /* Use available space */
+    height: 400px !important; /* Set desired height */
+    max-height: 600px; /* Allow scrolling for taller content */
+    overflow-y: auto; /* Enable vertical scrolling */
+    width: 100%; /* Ensure it spans the parent width */
+  }
+
+  /* Adjust the inner editable area */
+  .ql-editor {
+    height: 100% !important; /* Fill the container */
+    overflow-y: auto; /* Scroll when content exceeds height */
+    font-size: 1.2rem; /* Increase font size */
+    line-height: 1.8; /* Better line spacing */
+  }
+
+  /* Optional: Customize toolbar button sizes */
+  .ql-toolbar {
+    font-size: 1.2rem; /* Increase toolbar button size */
+    margin-bottom: 0.5rem; /* Add spacing below the toolbar */
+  }
+}
+
+.text-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}

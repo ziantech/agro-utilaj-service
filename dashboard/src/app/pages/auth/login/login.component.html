@@ -1,0 +1,50 @@
+<div class="auth-container flex-center">
+  <img class="logo" src="assets/logo.png" alt="Logo" />
+
+  <div *ngIf="generalMessage.message" class="alert" [ngClass]="generalMessage.type">
+    <mat-icon class="alert-icon">
+      {{ generalMessage.type === 'success' ? 'check_circle' : 'error' }}
+    </mat-icon>
+    <span class="alert-message">{{ generalMessage.message }}</span>
+  </div>
+
+  <div class="form">
+
+
+      <app-custom-input
+        label="Email"
+        placeholder="Introduceti E-mail"
+        [helperText]="errors.email"
+        [errorMessage]="errors.email"
+        [controlValue]="fields.email"
+        (valueChange)="onFieldChange('email', $event)"
+        [required]="true"
+
+      ></app-custom-input>
+
+      <app-custom-input
+        label="Parola"
+        placeholder="Introduceti Parola"
+        type="password"
+        [helperText]="errors.password"
+        [errorMessage]="errors.password"
+        (valueChange)="onFieldChange('password', $event)"
+        [required]="true"
+
+      ></app-custom-input>
+
+      <div class="remember-me">
+        <mat-checkbox (change)="rememberMe = $event.checked" [checked]="rememberMe">Tine-ma minte</mat-checkbox>
+
+      </div>
+
+      <button class="btn btn-primary" (click)="onSubmit()" *ngIf="!isLoading">Logare</button>
+      <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+      <div class="auth-links">
+        <button type="button" class="text-button" (click)="navigateToForgot()">Ati uitat parola?</button>
+      </div>
+
+
+
+  </div>
+</div>

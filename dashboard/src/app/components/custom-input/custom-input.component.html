@@ -1,0 +1,25 @@
+
+<mat-form-field [appearance]="'outline'" [style.width]="isHalfWidth ? '50%' : '100%'">
+  <mat-label>{{ label }}</mat-label>
+
+  <!-- Input Field -->
+  <input
+    matInput
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="controlValue"
+    (input)="onInputChange($event)"
+    [required]="required"
+  />
+
+
+
+  <ng-container *ngIf="errorMessage; else showHelper">
+    <mat-error>{{ errorMessage }}</mat-error>
+  </ng-container>
+  <ng-template #showHelper>
+    <mat-hint *ngIf="helperText">{{ helperText }}</mat-hint>
+  </ng-template>
+
+</mat-form-field>
+

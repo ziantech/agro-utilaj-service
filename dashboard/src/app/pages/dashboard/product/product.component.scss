@@ -1,0 +1,155 @@
+.product-page {
+  width: 100%;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
+  #delete {
+    color: var(--warn-color);
+  }
+
+  .product-date {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .product-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .product-id {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    margin: 0.5rem 0;
+  }
+
+  .action-buttons {
+    margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+  }
+
+  .description-section {
+
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .price-section {
+    margin-top: 2rem;
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+
+        strong {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+    .negotiable-note {
+      color: #00796b;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+  }
+
+  .images-section {
+    margin-top: 2rem;
+
+    h4{
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    .image-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .image-wrapper {
+        position: relative;
+
+        img {
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+          border-radius: 8px;
+        }
+
+        button {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          background-color: rgba(0, 0, 0, 0.5);
+          color: white;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.loading-container p {
+  margin-top: 1rem;
+}
+
+.error-container p {
+  margin-bottom: 1rem;
+  color: #d32f2f;
+}
+
+
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+
+  p {
+    color: #6b7280;
+    margin-top: 10px;
+  }
+
+  mat-spinner {
+    margin-bottom: 15px;
+  }
+
+  button {
+    color: #d9534f;
+    font-weight: bold;
+  }
+}

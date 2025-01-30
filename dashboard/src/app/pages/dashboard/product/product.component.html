@@ -1,0 +1,77 @@
+<div class="product-page" *ngIf="!isPageLoading && !hasError; else loadingOrError">
+
+<p class="product-date">Creat la: {{ formatDate(product?.createdAt!) }}</p>
+
+<h3 class="product-name">{{ product?.name }}</h3>
+<h5 class="product-id">Id Unic: #{{ product?.unique_id }}</h5>
+
+
+<p><strong>Categoria:</strong> {{ product?.category }}</p>
+<p><strong>Marca:</strong> {{ product?.make }}</p>
+<p><strong>Modelul:</strong> {{ product?.productModel }}</p>
+
+
+<div class="action-buttons">
+  <button mat-icon-button matTooltip="Editeaza Produsul" color="primary" (click)="onEdit()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-icon-button matTooltip="Sterge Produsul" id="delete" (click)="onDelete()" *ngIf="!isDeleteLoading">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <mat-spinner diameter="30" *ngIf="isDeleteLoading"></mat-spinner>
+</div>
+
+
+<div class="description-section">
+  <h4>Descriere</h4>
+  <p [innerHTML]="product?.description"></p>
+</div>
+
+
+<div class="price-section">
+  <h4>Preturi</h4>
+  <ul>
+    <li *ngFor="let price of product?.price">
+      <strong>{{ getCurrencySymbol(price.currency) }}</strong> {{ price.amount }}
+    </li>
+  </ul>
+  <p *ngIf="product?.negotiable" class="negotiable-note">Pret negociabil</p>
+</div>
+
+
+<div class="images-section">
+  <h4>Imagini</h4>
+  <button mat-icon-button type="button" (click)="triggerFileUpload(fileInput)" style="margin-bottom: 1rem;">
+    <mat-icon>add</mat-icon>
+  </button>
+  <input
+    type="file"
+    multiple
+    hidden
+    #fileInput
+    (change)="onFileSelected($event)"
+  />
+  <div class="image-grid">
+    <div class="image-wrapper" *ngFor="let image of product?.images">
+      <img [src]="image.file" alt="Imagine"  (click)="openImageDialog(image.file)"/>
+      <button mat-icon-button matTooltip="Sterge Imaginea" color="error"  (click)="onDeleteImage(image.id)" >
+        <mat-icon *ngIf="!isDeleteImageLoading">delete</mat-icon>
+        <mat-spinner diameter="30" *ngIf="isDeleteImageLoading"
+        ></mat-spinner>
+      </button>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<ng-template #loadingOrError>
+  <div class="loading-container" *ngIf="isPageLoading">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Se incarca produsul...</p>
+  </div>
+  <div class="error-container" *ngIf="hasError">
+    <p>Produsul nu a putut fi incarcat.</p>
+    <button mat-button color="warn" (click)="loadPageData()">Reincearca</button>
+  </div>
+</ng-template>

@@ -1,0 +1,31 @@
+<div class="auth-container flex-center">
+  <img class="logo" src="assets/logo.png" alt="Logo" />
+
+  <div *ngIf="generalMessage.message" class="alert" [ngClass]="generalMessage.type">
+    <mat-icon class="alert-icon">
+      {{ generalMessage.type === 'success' ? 'check_circle' : 'error' }}
+    </mat-icon>
+    <span class="alert-message">{{ generalMessage.message }}</span>
+  </div>
+
+  <div class="form">
+      <button mat-icon-button style="margin: 0 auto;" (click)="navigateToHome()"><mat-icon>arrow_back</mat-icon></button>
+      <p>Ti-ai uitat parola? Nici o problema</p>
+      <p>Introdu e-mailul in campul de mai jos si apasa pe trimite</p>
+
+      <app-custom-input
+        label="Email"
+        placeholder="Introduceti E-mail"
+        [helperText]="errors.email"
+        [errorMessage]="errors.email"
+        [controlValue]="fields.email"
+        (valueChange)="onFieldChange('email', $event)"
+        [required]="true"
+
+      ></app-custom-input>
+
+      <button class="btn btn-primary" (click)="onSubmit()" *ngIf="!isLoading">Trimite</button>
+      <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+
+  </div>
+</div>

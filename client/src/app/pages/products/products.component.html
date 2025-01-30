@@ -1,0 +1,30 @@
+<nav class="navbar">
+  <div class="logo">
+    <img src="assets/tractor.png" alt="Tractor Logo" class="logo-icon" (click)="navigateTo()" />
+    <a (click)="navigateTo()">AgroUtilaj Service</a>
+  </div>
+  <div class="hamburger-menu" [class.active]="menuActive" (click)="toggleMenu()">
+    <mat-icon>{{ menuActive ? 'close' : 'menu' }}</mat-icon>
+  </div>
+  <div class="nav-links" [class.active]="menuActive">
+    <a (click)="navigateTo()">Acasa</a>
+  </div>
+</nav>
+<div class="home-container">
+
+  <section class="latest-products-section" *ngIf="!productsLoading">
+    <h2>Toate Produsele</h2>
+    <div class="products-container">
+      <div *ngFor="let product of products" class="product-card" (click)="navigateToProduct(product._id)">
+        <img [src]="product.images.length ? product.images[0].file : 'assets/no-image.jpg'"
+             [alt]="product.name" class="product-image">
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          <p class="product-details">{{ product.make }} {{ product.productModel }}</p>
+          <p class="product-price">{{ product.price.length ? (product.price[0].amount | currency:product.price[0].currency) : 'Preț nedisponibil' }}</p>
+          <p class="product-date">{{ formatDate(product.createdAt) }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

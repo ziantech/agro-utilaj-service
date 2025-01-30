@@ -1,0 +1,101 @@
+.dashboard-container {
+  height: 100vh;
+  background: #f3f4f6;
+
+  .sidebar {
+    width: 240px;
+
+    color: #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+    align-items: center;
+    justify-content: center;
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      color: #3b82f6;
+      padding: 0 20px;
+
+      .logo {
+        max-width: 100%; /* Ensure it resizes dynamically */
+        width: 400px; /* Adjust the base size */
+        height: auto;
+        margin-bottom: 1.5rem; /* Add space below the logo */
+      }
+    }
+
+    nav {
+      flex: 1;
+      margin-top: 20px;
+
+      a {
+        display: flex;
+        align-items: center; /* Ensures vertical alignment of icon and text */
+        gap: 0.75rem; /* Adjust the gap between the icon and text */
+        padding: 15px 20px;
+        font-size: 16px;
+        font-weight: 500;
+        height: auto;
+        color: #4b4e52;
+        text-decoration: none; /* Removes underline from links */
+        transition: background 0.3s ease, color 0.3s ease;
+
+        mat-icon {
+          font-size: 20px; /* Ensures consistent icon size */
+          vertical-align: middle; /* Aligns the icon properly */
+        }
+
+        span {
+          line-height: 1.5; /* Ensures text alignment with the icon */
+        }
+
+        &:hover {
+          background: #3b82f6;
+          color: #ffffff;
+
+          mat-icon {
+            color: #ffffff;
+          }
+        }
+
+        &.active-link {
+          background: #2563eb;
+          color: #ffffff;
+
+          mat-icon {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+
+
+  }
+
+  .content {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: calc(100vh - 40px);
+    overflow-y: auto;
+
+    /* Animation for route changes */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    animation: fadeIn 0.3s ease-in-out;
+  }
+}

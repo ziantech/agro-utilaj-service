@@ -1,1 +1,152 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'rm-basic';
+  src: url('/assets/rm-basic-serif.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+
+:root {
+  --primary-color: #9c9c9c; /* Nicer black */
+  --primary-color-dark: #1a1a1a; /* Darker shade of primary */
+
+  --donate-color: #1310c0;
+
+  --accent-color: rgba(255, 255, 255, 0.925); /* Darker creamy */
+  --accent-color-dark: rgba(44, 42, 42, 0.726); /* Darker shade of accent */
+
+  --warn-color: #F44336; /* Angular Material warn */
+  --warn-color-dark: #D32F2F; /* Darker shade of warn */
+
+  --button-text-color: #ffffff;
+  --button-padding: 0.5rem 1rem;
+  --button-border-radius: 5px;
+  --button-font-size: 14px;
+}
+
+
+/* Base Button Styles */
+.btn {
+  display: inline-block;
+  padding: var(--button-padding);
+  font-size: var(--button-font-size);
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--button-text-color);
+  background: transparent;
+  border-radius: var(--button-border-radius);
+  border: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Primary Button */
+/* Primary Button */
+.btn-primary {
+  background-color: var(--primary-color-dark);
+
+  color: var(--button-text-color);
+}
+
+.btn-donate {
+  background-color: var(--donate-color);
+
+  color: var(--button-text-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color);
+}
+
+/* Accent Button */
+.btn-accent {
+  background-color: var(--accent-color);
+  color: var( --primary-color);
+}
+
+.btn-accent:hover {
+  background-color: var(--accent-color-dark);
+  color: #fff;
+}
+
+/* Warn Button */
+.btn-warn {
+  background-color: var(--warn-color);
+  color: var(--button-text-color);
+}
+
+.btn-warn:hover {
+  background-color: var(--warn-color-dark);
+}
+
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+* {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #888 #333; /* Scrollbar color for Firefox */
+}
+
+*::-webkit-scrollbar {
+  width: 8px; /* Scrollbar width */
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888; /* Scrollbar thumb color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker on hover */
+}
+

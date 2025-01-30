@@ -1,0 +1,150 @@
+<nav class="navbar">
+  <div class="logo">
+    <img src="assets/tractor.png" alt="Tractor Logo" class="logo-icon" />
+    <a routerLink="/">AgroUtilaj Service</a>
+  </div>
+  <div class="hamburger-menu" [class.active]="menuActive" (click)="toggleMenu()">
+    <mat-icon>{{ menuActive ? 'close' : 'menu' }}</mat-icon>
+  </div>
+  <div class="nav-links" [class.active]="menuActive">
+    <a (click)="scrollToSection('home')">Acasa</a>
+    <a (click)="scrollToSection('services')">Servicii</a>
+    <a (click)="scrollToSection('faq')">FAQ</a>
+    <a (click)="scrollToSection('contact')">Contact</a>
+    <button mat-raised-button color="primary" class="browse-button" (click)="navigateTo('produse')">Toate Produsele</button>
+  </div>
+</nav>
+
+<div class="home-container">
+
+
+  <header class="header-section" id="home">
+    <div class="header-content">
+      <h1>Bine ai venit la <span>AgroUtilaj Service</span>! 🚜</h1>
+      <p>Descoperă gama noastră de utilaje agricole <strong style="color: #FFEB3B;">noi și second-hand</strong>, perfect adaptate nevoilor tale!</p>
+      <p>Oferim servicii profesionale de întreținere și reparații pentru ca utilajele tale să funcționeze impecabil.</p>
+      <button mat-raised-button color="primary" class="cta-button" (click)="navigateTo('produse')">
+        Vezi Toate Produsele
+      </button>
+    </div>
+    <div class="header-image">
+      <img src="assets/banner.jpg" alt="Tractor Image" class="tractor-image">
+    </div>
+  </header>
+
+
+  <section class="latest-products-section" *ngIf="!productsLoading">
+    <h2>Ultimele  Produse Adăugate</h2>
+    <div class="products-container">
+      <div *ngFor="let product of products" class="product-card" (click)="navigateToProduct(product._id)">
+        <img [src]="product.images.length ? product.images[0].file : 'assets/no-image.jpg'"
+             [alt]="product.name" class="product-image">
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          <p class="product-details">{{ product.make }} {{ product.productModel }}</p>
+          <p class="product-price">{{ product.price.length ? (product.price[0].amount | currency:product.price[0].currency) : 'Preț nedisponibil' }}</p>
+          <p class="product-date">{{ formatDate(product.createdAt) }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <mat-spinner diameter="30" *ngIf="productsLoading"></mat-spinner>
+
+
+  <section class="services-section" id="services">
+    <h2>Serviciile Noastre</h2>
+    <div class="services-container">
+      <!-- Service 1: Vânzare Utilaje -->
+      <div class="service-card">
+        <mat-icon class="service-icon">agriculture</mat-icon>
+        <h3>Vânzare utilaje agricole</h3>
+        <p>Oferim o gamă variată de <strong>utilaje agricole noi și second-hand</strong>, potrivite pentru orice fermă.</p>
+      </div>
+
+      <!-- Service 2: Service și întreținere -->
+      <div class="service-card">
+        <mat-icon class="service-icon">build</mat-icon>
+        <h3>Service și întreținere</h3>
+        <p>Asigurăm <strong>întreținere, diagnosticare și reparații</strong> pentru utilajele agricole, indiferent de marcă.</p>
+      </div>
+
+      <!-- Service 3: Transport utilaje -->
+      <div class="service-card">
+          <mat-icon class="service-icon">local_shipping</mat-icon>
+        <h3>Transport utilaje</h3>
+        <p>Oferim servicii de transport pentru utilaje agricole, <strong>preț negociabil</strong>, în funcție de locație.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section" id="faq">
+    <div class="faq-header">
+      <h4>Întrebări Frecvente</h4>
+      <p>
+        În această secțiune de Întrebări Frecvente (FAQ), vei găsi răspunsuri la cele mai comune întrebări despre serviciile noastre. Fie că este vorba despre achiziția utilajelor agricole, service și întreținere sau opțiunile de transport, aici vei găsi informațiile de care ai nevoie. Dacă ai întrebări suplimentare, nu ezita să ne contactezi!
+      </p>
+    </div>
+
+    <div class="faq-container">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let faq of faqs">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ faq.question }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>{{ faq.answer }}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </section>
+
+
+  <section class="contact-section" id="contact">
+    <h2>Contactează-ne</h2>
+    <div class="contact-container">
+      <!-- Left Side: Google Map -->
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1631.880580413669!2d23.78093093393582!3d46.53809071350921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474967260d7a8b9b%3A0xc9ee47802183f32b!2sAgro%20Utilaj%20Service!5e0!3m2!1sen!2sus!4v1738203924097!5m2!1sen!2sus"
+          class="google-map" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <!-- Right Side: Contact Form & Info -->
+      <div class="contact-form">
+        <h3>Scrie-ne un mesaj</h3>
+        <form (submit)="sendMessage(); $event.preventDefault()">
+          <input type="text" placeholder="Nume complet" [(ngModel)]="contactName" name="name" required>
+          <input type="email" placeholder="Adresă de email" [(ngModel)]="contactEmail" name="email" required>
+          <textarea placeholder="Mesajul tău" [(ngModel)]="contactMessage" name="message" rows="4" required></textarea>
+          <button type="submit" class="contact-button" *ngIf="!sendMessageLoading">Trimite mesaj</button>
+          <mat-spinner diameter="30" *ngIf="sendMessageLoading"></mat-spinner>
+        </form>
+
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h3>Informații de contact</h3>
+          <p><strong>Telefon:</strong> <a href="tel:+40745602350"> +40745602350 - Sorin</a></p>
+          <p><strong>Telefon:</strong> <a href="tel:+40742431571"> +40742431571 - Adriana</a></p>
+
+          <p><strong>Email:</strong> <a href="mailto:adrianateodorasarb@yahoo.com"> adrianateodorasarb&#64;yahoo.com</a></p>
+          <p><strong>Adresă:</strong> DN1, Turda 407405, Romania</p>
+
+          <!-- Schedule Section -->
+          <div class="schedule">
+            <h3>Program de lucru</h3>
+            <p><strong>Luni - Vineri:</strong> 09:00 - 17:00</p>
+            <p><strong>Sâmbătă:</strong> 09:00 - 14:00</p>
+            <p><strong>Duminică:</strong> Închis</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div>
+
+

@@ -1,0 +1,35 @@
+<app-toast></app-toast>
+<header>
+  <div class="top-bar">
+    <div class="contact-info">
+      <a href="mailto:adrianateodorasarb@yahoo.com"><mat-icon>email</mat-icon> adrianateodorasarb&#64;yahoo.com</a>
+      <a href="tel:+40745602350"><mat-icon>phone</mat-icon> 0745602350 - Sorin</a>
+      <a href="tel:+40742431571"><mat-icon>phone</mat-icon> 0742431571 - Adriana </a>
+
+    </div>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/people/SC-Agroutilaj-SRL/100066681192979/?rdid=Kjb0OtTl4Bn4IvKX&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1GjHpV1yxX%2F" target="_blank" rel="noopener noreferrer"><mat-icon>facebook</mat-icon></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <img src="assets/tractor.png" alt="Star Logo" class="footer-logo" />
+    <p>
+      © {{currentYear}} AgroUtilaj Service. All rights reserved.
+    </p>
+
+  </div>
+  <div class="footer-contact">
+    <u><p (click)="navigateToTerms()" style="cursor: pointer;">Termeni si Conditii</p></u>
+    <p>Email: <a href="mailto:adrianateodorasarb@yahoo.com"> adrianateodorasarb&#64;yahoo.com</a></p>
+    <p>Telefon: <a href="tel:+40745602350"> 0745602350 - Sorin</a></p>
+    <p>Telefon: <a href="tel:+40742431571"> 0742431571 - Adriana</a></p>
+
+  </div>
+</footer>

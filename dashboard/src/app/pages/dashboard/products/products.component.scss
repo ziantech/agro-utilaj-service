@@ -1,0 +1,112 @@
+.home-container {
+  padding: 1rem;
+}
+
+.search-section {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.search-field {
+  width: 100%;
+  max-width: 600px;
+}
+
+.facilities-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.facility-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  background: #ffffff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.facility-card:hover {
+  transform: translateY(-5px);
+}
+
+
+.facility-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.facility-details h3 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+  color: #333333;
+}
+
+.facility-details p {
+  font-size: 0.9rem;
+  color: #555555;
+}
+
+.facility-website {
+  font-size: 0.9rem;
+  color: #1a73e8;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.facility-website:hover {
+  text-decoration: underline;
+}
+
+
+
+
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.loading-container p {
+  margin-top: 1rem;
+}
+
+.error-container p {
+  margin-bottom: 1rem;
+  color: #d32f2f;
+}
+
+
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+
+  p {
+    color: #6b7280;
+    margin-top: 10px;
+  }
+
+  mat-spinner {
+    margin-bottom: 15px;
+  }
+
+  button {
+    color: #d9534f;
+    font-weight: bold;
+  }
+}
