@@ -11,7 +11,7 @@ RUN npm install
 COPY . .
 
 # Build the Angular project without specifying an environment file
-RUN npm run build -- --configuration=production --project=client
+RUN npm run build
 
 # Use Nginx for serving the frontend
 FROM nginx:alpine
