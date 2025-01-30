@@ -1,24 +1,21 @@
-# Use an official Node.js image to build the Angular app
+# Use Node.js as base image for building
 FROM node:18 as build
 
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY package.json package-lock.json ./
+# Copy package files and install dependencies
+COPY package*.json ./
 RUN npm install
 
-# Copy the entire admin panel source code
+# Copy the entire project
 COPY . .
 
-# Build the Angular application
-RUN npm run build --configuration production
+# Build the Angular project for dashboard
+RUN npm run build -- --configuration=production --project=dashboard
 
-# Use Nginx to serve the built Angular app
-FROM nginx:latest
-COPY --from=build /app/dist/admin /usr/share/nginx/html
+# Use Nginx for serving the frontend
+FROM nginx:alpine
+COPY --from=build /app/dist/dashboard /usr/share/nginx/html
 
-# Expose the HTTP port
 EXPOSE 80
-
-# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
