@@ -11,7 +11,8 @@ RUN npm install
 COPY . .
 
 # Build the Angular project for dashboard
-RUN npm run build -- --configuration=production --project=dashboard
+RUN npm run build
+
 
 # Use Nginx for serving the frontend
 FROM nginx:alpine
