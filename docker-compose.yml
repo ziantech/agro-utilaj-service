@@ -1,37 +1,59 @@
+version: '3.8'
+
 services:
-  client:
-    build: ./client
-    ports:
-      - "80:80"
-    environment:
-      - API_URL=http://52.28.157.218:5000
-    depends_on:
-      - server
-
-  dashboard:
-    build: ./dashboard
-    ports:
-      - "81:80"
-    environment:
-      - API_URL=http://52.28.157.218:5000
-    depends_on:
-      - server
-
-  server:
-    build: ./server
+  backend:
+    build: ./backend
+    container_name: backend
+    restart: always
+    env_file: .env
     ports:
       - "5000:5000"
+    networks:
+      - app_network
+
+  client:
+    build: ./client
+    container_name: client
+    restart: always
     environment:
-      - MONGO_DB_URI_DEV=mongodb+srv://calin:mamaligaP123@testcluster.4vygq.mongodb.net/agroutilaj-test
-      - CORS_ORIGIN=http://localhost:4200
-      - CORS_METHODS=GET,POST,PUT,DELETE
-      - JWT_SECRET=796e12sfaxb256e
-      - REFRESH_TOKEN_SECRET=799e15sfasb256e
-      - FRONTEND_URL=http://localhost:4200
-      - EMAIL_USER=adrianateodorasarb@yahoo.com
-      - EMAIL_PASS="nzae kvnm hpoj oxnq"
-      - EMAIL_SERVICE=yahoo
-      - AWS_REGION=eu-central-1
-      - AWS_SECRET_ACCESS_KEY=sY6ctCfgVgRmIkG7MAcbSn7Fj5yRChT5kkrSfgLv
-      - AWS_ACCESS_KEY_ID=AKIAWAA66OXQBOWW3X65
-      - AWS_S3_BUCKET_NAME=agroutilaj-service-bucket
+      - API_URL=http://52.28.157.218
+    depends_on:
+      - backend
+    networks:
+      - app_network
+    ports:
+      - "80:80"
+
+  admin:
+    build: ./admin
+    container_name: admin
+    restart: always
+    environment:
+      - API_URL=http://52.28.157.218:81
+    depends_on:
+      - backend
+    networks:
+      - app_network
+    ports:
+      - "81:80"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    depends_on:
+      - backend
+      - client
+      - admin
+    ports:
+      - "80:80"
+      - "81:81"
+      - "5000:5000"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
