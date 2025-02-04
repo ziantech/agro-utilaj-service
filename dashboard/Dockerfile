@@ -1,22 +1,16 @@
-# Use Node.js as base image for building
-FROM node:18 as build
+# Stage 1: Build Angular app
+FROM node:18 AS build
+WORKDIR /usr/src/app
 
-WORKDIR /app
-
-# Copy package files and install dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy the entire project
 COPY . .
+RUN npm run build -- --output-path=dist/dashboard --configuration production
 
-# Build the Angular project for dashboard
-RUN npm run build
-
-
-# Use Nginx for serving the frontend
+# Stage 2: Serve with NGINX
 FROM nginx:alpine
-COPY --from=build /app/dist/dashboard /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/dashboard /usr/share/nginx/html/
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

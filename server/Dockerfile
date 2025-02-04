@@ -1,18 +1,23 @@
-# Use Node.js as the base image
+# Use the official Node.js image
 FROM node:18
 
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY package.json package-lock.json ./
-RUN npm install --only=production
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-# Copy the entire backend source code
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the app files
 COPY . .
 
-# Expose the port used by the backend
-EXPOSE 5000
+# Build the TypeScript files
+RUN npm run build
 
-# Start the production server
-CMD ["node", "dist/index.prod.js"]
+# Expose the API port
+EXPOSE 3000
+
+# Start the API server
+CMD ["npm", "run", "start:prod"]

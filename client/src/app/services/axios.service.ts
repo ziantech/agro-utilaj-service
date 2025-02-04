@@ -16,8 +16,9 @@ export class AxiosService {
   private isRefreshing = false;
   private refreshSubscribers: ((token: string) => void)[] = [];
 
-  private apiUrl = `http://52.28.157.218:5000/api/v1`
-// private apiUrl = `https://api.philippians314.com/api/v1`
+  // private apiUrl =`http://localhost:5000/api/v1`
+  private apiUrl = `https://api.agroutilajservice.com/api/v1`;
+
 
   constructor(private tokenService: TokenService, private router: Router) {
     this.axiosInstance = axios.create({
